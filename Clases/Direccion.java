@@ -1,11 +1,11 @@
 package Clases;
 
 public class Direccion {
-    public String calle;
-    public int noCalle;
-    public String nomenclatura;
-    public String barrio;
-    public String ciudad;
+    private String calle;
+    private int noCalle;
+    private String nomenclatura;
+    private String barrio;
+    private String ciudad;
 
 
     public Direccion(String calle, int noCalle, String nomenclatura, String barrio, String ciudad) {

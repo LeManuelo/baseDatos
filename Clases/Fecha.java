@@ -2,9 +2,9 @@ package Clases;
 
 
 public class Fecha {
-    public int dd;
-    public int mm;
-    public int aa;
+    private int dd;
+    private int mm;
+    private int aa;
 
     public Fecha(int dd, int mm, int aa) {
         this.dd = dd;

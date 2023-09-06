@@ -1,13 +1,13 @@
 package Clases;
 
 public class Usuario implements Comparable <Usuario> {
-    public long id;
-    public String nombre;
-    public Fecha fechaNac;
-    public String ciudadNac;
-    public Direccion dir;
-    public long tel;
-    public String email;
+    private long id;
+    private String nombre;
+    private Fecha fechaNac;
+    private String ciudadNac;
+    private Direccion dir;
+    private long tel;
+    private String email;
 
 
     public Usuario(long id, String nombre, Fecha fechaNac, String ciudadNac, Direccion dir, long tel, String email) {
