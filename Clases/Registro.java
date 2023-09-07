@@ -2,10 +2,23 @@ package Clases;
 import java.util.*;
 import java.io.*;  
 
-
 public class Registro {
     private int noRegistros = 0;
     Usuario[] registros = new Usuario[5];
+
+    private void ordenarPorId() {
+        for (int i = 1; i < noRegistros; i++) {
+            Usuario usuarioActual = registros[i];
+            int j = i - 1;
+
+            while (j >= 0 && registros[j].getId() > usuarioActual.getId()) {
+                registros[j + 1] = registros[j];
+                j--;
+            }
+
+            registros[j + 1] = usuarioActual;
+        }
+    }
 
     public boolean agregar(Usuario u){
 
@@ -23,6 +36,8 @@ public class Registro {
             if(status == true){
                 registros[noRegistros] = u;
                 noRegistros++;
+                ordenarPorId();
+                status = true;
                 toFile();
             }
         }
@@ -35,6 +50,7 @@ public class Registro {
         if(pos!=-1){
             usuario = registros[pos];
             registros[pos] = null;
+            reorganizarArreglo();
             noRegistros--;
             System.out.println(pos);
             toFile();
@@ -42,13 +58,26 @@ public class Registro {
         return usuario;
     }
 
-    public Usuario buscarUsuario(long id){
-        Usuario usuario = null;
-        int pos = buscarPosicion(id);
-        if(pos!=-1){
-            usuario = registros[pos];
+    private void reorganizarArreglo() {
+        Usuario[] nuevoArreglo = new Usuario[registros.length];
+        int nuevoIndice = 0;
+    
+        for (int i = 0; i < registros.length; i++) {
+            if (registros[i] != null) {
+                nuevoArreglo[nuevoIndice] = registros[i];
+                nuevoIndice++;
+            }
         }
-        return usuario;
+        registros = nuevoArreglo;
+    }
+
+    public Usuario buscarUsuario(long id) {
+        for (int i = 0; i < noRegistros; i++) {
+            if (registros[i].getId() == id) {
+                return registros[i];
+            }
+        }
+        return null;
     }
 
     public int buscarPosicion(long id){
